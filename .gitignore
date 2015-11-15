@@ -9,3 +9,5 @@ W6inClass
 *.tar.gz
 *.tar.tgz
 node_modules
+*.log
+
