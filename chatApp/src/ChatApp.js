@@ -1,6 +1,9 @@
 const React = require('react') ;
 const ThreadItem = require('./ThreadItem') ;
 const MessageItem = require('./MessageItem') ;
+const Rebase = require('re-base');
+const base = Rebase.createClass('https://chatAppofLin.firebaseIO.com');
+
 
 const initialState = {
     inputMsg : '',
@@ -106,6 +109,19 @@ class ChatApp extends React.Component {
                 msgFromMe = {message.msgFromMe}
             />
         );
+    }
+    
+
+    componentDidMount() {
+        this.ref = base.syncState(`threads`, {
+            context: this,
+            state: 'threads',
+            asArray: true
+        });
+    }
+
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
     }
 
     render() {

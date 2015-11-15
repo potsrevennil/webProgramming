@@ -1,0 +1,9 @@
+{
+  "firebase": "chatappoflin",
+  "public": "chatApp",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
