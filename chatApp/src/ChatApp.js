@@ -126,8 +126,8 @@ class ChatApp extends React.Component {
 
     render() {
         const{inputMsg, currentIndex, threads} = this.state ;
-        const currentPerson = threads[currentIndex].targetName ;
-        const messages = threads[currentIndex].messages ;
+        const currentPerson = (threads[currentIndex] && threads[currentIndex].targetName ) || 'Loading';
+        const messages = (threads[currentIndex] && threads[currentIndex].messages) || [];
         return (
             <div className="chat-app clearfix">
                 <div className="chat-app_left">
