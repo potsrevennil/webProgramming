@@ -2,40 +2,40 @@ const React = require('react') ;
 const ThreadItem = require('./ThreadItem') ;
 const MessageItem = require('./MessageItem') ;
 const Rebase = require('re-base');
-const base = Rebase.createClass('https://chatAppofLin.firebaseIO.com');
+const base = Rebase.createClass('https://chatappoflin.firebaseio.com');
 
 
 const initialState = {
     inputMsg : '',
     threads : [
-        {
-            targetName : 'Elsa',
-            targetPic : 'http://lorempixel.com/50/50/people/1',
-            messages : [
-                { msgFromMe : false , msg : '對啊', time : '12:27 a.m.'},
-                { msgFromMe : false , msg : 'hello', time : '12:27 a.m.'},
-                { msgFromMe : false , msg : 'How are you ?', time : '12:27 a.m.'},
-                { msgFromMe : true , msg : 'I\'m fine', time : '12:27 a.m.'},
-                { msgFromMe : true , msg : 'Thank you !!', time : '12:27 a.m.'},
+        // {
+            // targetName : 'Elsa',
+            // targetPic : 'http://lorempixel.com/50/50/people/1',
+            // messages : [
+                // { msgFromMe : false , msg : '對啊', time : '12:27 a.m.'},
+                // { msgFromMe : false , msg : 'hello', time : '12:27 a.m.'},
+                // { msgFromMe : false , msg : 'How are you ?', time : '12:27 a.m.'},
+                // { msgFromMe : true , msg : 'I\'m fine', time : '12:27 a.m.'},
+                // { msgFromMe : true , msg : 'Thank you !!', time : '12:27 a.m.'},
 
-            ]
-        },
-        {
-            targetName : 'Katharine',
-            targetPic : 'http://lorempixel.com/50/50/people/9',
-            messages : [
-                { msgFromMe : false , msg : 'Hi', time : '12:27 a.m.'},
-                { msgFromMe : true , msg : 'GoodBye~~', time : '12:27 a.m.'},
-            ]
-        },
-        {
-            targetName : 'Minami',
-            targetPic : 'http://lorempixel.com/50/50/people/5',
-            messages : [
-                { msgFromMe : false , msg : 'I am Katharine ', time : '12:27 a.m.'},
-                { msgFromMe : true , msg : 'GoodBye~~', time : '12:27 a.m.'},
-            ]
-        }
+            // ]
+        // },
+        // {
+            // targetName : 'Katharine',
+            // targetPic : 'http://lorempixel.com/50/50/people/9',
+            // messages : [
+                // { msgFromMe : false , msg : 'Hi', time : '12:27 a.m.'},
+                // { msgFromMe : true , msg : 'GoodBye~~', time : '12:27 a.m.'},
+            // ]
+        // },
+        // {
+            // targetName : 'Minami',
+            // targetPic : 'http://lorempixel.com/50/50/people/5',
+            // messages : [
+                // { msgFromMe : false , msg : 'I am Katharine ', time : '12:27 a.m.'},
+                // { msgFromMe : true , msg : 'GoodBye~~', time : '12:27 a.m.'},
+            // ]
+        // }
     ],
     currentIndex : 0
 }
