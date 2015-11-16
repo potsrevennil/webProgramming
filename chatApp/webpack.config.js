@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: 'dist/'
+    publicPath: '/webProgramming/chatApp/dist/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
