@@ -1,3 +1,4 @@
+/* layout */
 .cardGame{
 }
 
@@ -5,11 +6,42 @@
 }
 
 .field{
+    position: relative;
 }
 
-.gamebutton{
+/* gameButton */
+.gameButton{
+
 }
 
-.cardBlocks{
+/* playingDecks */
+.playingDecks{
+    position: absolute;
+    top:200px;
+    height: 300px;
+    width: inherit;
+}
+
+.playingDeck{
+    height: 250px;
+    width: 200px;
+}
+
+.cards{
+    display: inline-block;
+    height: 250px;
+    width:inherit;
+    margin: 2.5em;
+}
+
+.card{
+    height: inherit;
+    width: inherit;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+        box-sizing: border-box;
 }
 

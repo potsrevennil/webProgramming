@@ -7,17 +7,24 @@ const initialState = {
         {
             cardArray:[
                 {
-                    cardValue:"1",
-                    cardColor:"spade",
-                    pictureSrc:"./images/1/s1.gif"
+                    cardValue: "1",
+                    cardColor: "spade",
+                    pictureSrc: "src/images/1/s1.gif",
+                    cardBack: "src/images/1/b2fv.gif"
                 }
             ]
         },{
             cardArray:[
                 {
-                    cardValue:"2",
-                    cardColor:"spade",
-                    pictureSrc:"./images/1/s2.gif"
+                    cardValue: "2",
+                    cardColor: "spade",
+                    pictureSrc: "src/images/1/s2.gif",
+                    cardBack: "src/images/1/b2fv.gif"
+                },{
+                    cardValue: "3",
+                    cardColor: "spade",
+                    pictureSrc: "src/images/1/s3.gif",
+                    cardBack: "src/images/1/b2fv.gif"
                 }
             ]
         }
@@ -36,9 +43,7 @@ class CardGame extends React.Component {
         const {cardArray} = deck ;
         return (
             <PlayingDeck 
-                src = {cardArray.pictureSrc}
-                cardColor = {cardArray.cardColor}
-                cardValue = {cardArray.cardValue}
+                cardArray = {cardArray}
             />
         );
 
@@ -52,7 +57,7 @@ class CardGame extends React.Component {
                     <h3 className = "gameButton"> Game </h3>
                 </div>
                 <div className= "field">
-                    <div className= "playingRow">
+                    <div className= "playingDecks">
                         {decks.map(this.renderPlayingDeck, this)}
                     </div>
                 </div>
@@ -69,15 +74,39 @@ class CardGame extends React.Component {
 // }
 
 class PlayingDeck extends React.Component{
-    render(){
-        const {src, cardColor, cardValue} = this.props ;
+
+    renderCard(card, i){
+        const {cardValue, cardColor, pictureSrc, cardBack} = card ;
         return(
-            <div>
-                <img className = "displayedCard" src = {src} width = "50" height = "100" alt = "" className = "img" />
+            <Card
+                index = {i}
+                value = {cardValue}
+                color = {cardColor}
+                pictureSrc = {pictureSrc}
+                cardBack = {cardBack}
+            />
+        );
+    }
+
+    render(){
+        const {cardArray} = this.props ;
+        return(
+            <div className= "cards">
+                {cardArray.map(this.renderCard,this)}
             </div>
         );
     }
 }
 
+class Card extends React.Component{
+    render(){
+        const {index, value, color, pictureSrc, cardBack} = this.props ;
+        return(
+            <div>
+                <img className= "card" src = {index == 0 ? pictureSrc : cardBack} width = "100" height = "150" alt = "" className = "img" />
+            </div>
+        );
+    }
+}
 
 module.exports= CardGame ;
