@@ -1,7 +1,7 @@
 const React = require('react') ;
 const {render} = require('react-dom') ;
-const cardGame = require('./cardGame') ;
+const CardGame = require('./cardGame') ;
 
 
 
-render(<cardGame />, document.getElementById('root')) ;
+render(<CardGame />, document.getElementById('root')) ;
