@@ -14,10 +14,31 @@
 
 }
 
+img{
+  height: 150px;
+  width: 100px;
+}
+/* mainDeck */
+.mainDeck{
+  position: absolute;
+  top: 0px;
+  height: 300px;
+  width: 200px;
+  left: 2.5em;
+}
+
+/* dealDeck */
+.dealDeck{
+  position: absolute;
+  top: 0px;
+  left: 250px;
+  height: 300px;
+  width: 200px;
+}
 /* playingDecks */
 .playingDecks{
     position: absolute;
-    top:200px;
+    top:500px;
     height: 300px;
     width: inherit;
 }
@@ -34,7 +55,7 @@
     margin: 2.5em;
 }
 
-.card{
+.playingDeckCard{
     height: inherit;
     width: inherit;
 }

@@ -65,10 +65,11 @@ class CardGame extends React.Component {
   }
 
   renderPlayingDeck(deck, i){
+    const{ playingDeck}= deck;
     return (
       <PlayingDeck
         index= {i}
-        playingDeck= {deck}
+        playingDeck= {playingDeck}
       />
     );
   }
@@ -84,9 +85,9 @@ class CardGame extends React.Component {
           <div className= "mainDeck">
             {mainDeck.map(this.renderMainDeckCard,this)}
           </div>
-          //<div className= "dealDeck">
-            //<img className= "card" src= {dealDeck.cardFront} width= "100" height= "150" alt= "" className= "img" />
-          //</div>
+          <div className= "dealDeck">
+            <img className= "card" src= {dealDeck.cardFront} alt= "" className= "img" />
+          </div>
           <div className= "playingDecks">
             {playingDecks.map(this.renderPlayingDeck, this)}
           </div>
@@ -109,7 +110,7 @@ class MainDeckCard extends React.Component{
     const {index, value, color, cardBack} = this.props ;
     return(
       <div>
-        <img className= "card" src= {cardBack} width= "100" height= "150" alt= "" className= "img" />
+        <img className= "mainDeckCard" src= {cardBack} alt= "" className= "img" />
       </div>
     );
   }
@@ -132,7 +133,7 @@ class PlayingDeck extends React.Component{
   render(){
     const {playingDeck} = this.props ;
     return(
-      <div className= "Cards">
+      <div className= "cards">
         {playingDeck.map(this.renderPlayingDeckCard,this)}
       </div>
     );
@@ -144,7 +145,7 @@ class PlayingDeckCard extends React.Component{
     const {index, value, color, cardFront, cardBack} = this.props ;
     return(
       <div>
-        <img className= "card" src= {index== 0? cardFront: cardBack} width= "100" height= "150" alt= "" className= "img" />
+        <img className= "playingDeckCard" src= {index== 0? cardFront: cardBack}  alt= "" className= "img" />
       </div>
     );
   }
