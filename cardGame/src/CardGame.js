@@ -21,34 +21,59 @@ cardTypes.forEach((type) => {
 
 
 const initialState = {
-    mainDeck: cardDeck,
-    dealDeck: [],
-    playingDecks: [
-      {
-        playingDeck:[
-          {
-            cardValue: '1',
-            cardColor: 'black',
-            cardFront: 'images/1/s1.gif',
-            cardBack: 'images/1/b2fv.gif'
-          }
-        ]
-      },{
-        playingDeck:[
-          {
-            cardValue: '2',
-            cardColor: 'black',
-            cardFront: 'images/1/s2.gif',
-            cardBack: 'images/1/b2fv.gif'
-          },{
-            cardValue: '3',
-            cardColor: 'black',
-            cardFront: 'images/1/s3.gif',
-            cardBack: 'images/1/b2fv.gif'
-          }
-        ]
-      }
-    ]
+  mainDeck: cardDeck,
+  dealDeck: [],
+  targetDecks: [
+    {
+      targetDeck:[
+        //{
+          //cardValue: '4',
+          //cardColor: 'black',
+          //cardFront: 'images/1/s4.gif',
+          //cardBack: 'images/1/b2fv.gif'
+        //}
+      ]
+    },{
+      targetDeck:[
+        //{
+          //cardValue: '5',
+          //cardColor: 'black',
+          //cardFront: 'images/1/s5.gif',
+          //cardBack: 'images/1/b2fv.gif'
+        //}
+      ]
+    },{
+      targetDeck:[]
+    },{
+      targetDeck:[]
+    }
+  ],
+  playingDecks: [
+    {
+      playingDeck:[
+        {
+          cardValue: '1',
+          cardColor: 'black',
+          cardFront: 'images/1/s1.gif',
+          cardBack: 'images/1/b2fv.gif'
+        }
+      ]
+    },{
+      playingDeck:[
+        {
+          cardValue: '2',
+          cardColor: 'black',
+          cardFront: 'images/1/s2.gif',
+          cardBack: 'images/1/b2fv.gif'
+        },{
+          cardValue: '3',
+          cardColor: 'black',
+          cardFront: 'images/1/s3.gif',
+          cardBack: 'images/1/b2fv.gif'
+        }
+      ]
+    }
+  ]
 }
 
 class CardGame extends React.Component {
@@ -77,7 +102,17 @@ class CardGame extends React.Component {
       />
     );
   }
-
+  
+  renderTargetDeck(deck, i){
+    console.log('enter renderTargetDeck');
+    const{ targetDeck}= deck;
+    return (
+        <TargetDeck
+          index= {i}
+          targetDeck= {targetDeck}
+        />
+    );
+  }
   renderPlayingDeck(deck, i){
     const{ playingDeck}= deck;
     return (
@@ -89,7 +124,7 @@ class CardGame extends React.Component {
   }
 
   render(){
-    const { mainDeck, dealDeck, playingDecks } = this.state ; 
+    const { mainDeck, dealDeck, targetDecks, playingDecks } = this.state ; 
     const mainDeckTop= mainDeck[mainDeck.length- 1] || {};
     const dealDeckTop= dealDeck[dealDeck.length- 1] || {};
     return(
@@ -110,6 +145,9 @@ class CardGame extends React.Component {
             src= {dealDeckTop.cardFront} 
             className= 'img' 
             />
+          </div>
+          <div className= 'targetDecks'>
+            {targetDecks.map(this.renderTargetDeck, this)}
           </div>
           <div className= 'playingDecks'>
             {playingDecks.map(this.renderPlayingDeck, this)}
@@ -139,6 +177,21 @@ class MainDeckCard extends React.Component{
   }
 }
 
+class TargetDeck extends React.Component{
+  render(){
+    const{index, targetDeck}= this.props;
+    const targetDeckTop= targetDeck[targetDeck.length- 1]|| {}; 
+    return(
+      <div className= 'deck'>
+        <img className= 'card'
+        src= {targetDeckTop.cardFront} 
+        className= 'img' 
+        />
+      </div>
+    );
+  }
+}
+
 class PlayingDeck extends React.Component{
   renderPlayingDeckCard(card, i){
     const{ cardValue, cardColor, cardFront, cardBack}= card ;
@@ -156,7 +209,7 @@ class PlayingDeck extends React.Component{
   render(){
     const {playingDeck} = this.props ;
     return(
-      <div className= 'cards'>
+      <div className= 'deck'>
         {playingDeck.map(this.renderPlayingDeckCard,this)}
       </div>
     );
