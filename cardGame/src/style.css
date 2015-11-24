@@ -29,6 +29,9 @@
   height: inherit;
   width: 120px;
 }
+.card{
+  position: absolute;
+}
 img{
   height: 150px;
   width: 100px;
@@ -38,6 +41,7 @@ img{
 /* row1*/
 #mainDeck{
   width: 120px;
+  top: 5px;
 }
 
 #dealDeck{
