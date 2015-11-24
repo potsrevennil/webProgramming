@@ -3,7 +3,7 @@ const React = require('react') ;
 // const base = Rebase.createClass('https://chatappoflin.firebaseio.com');
 //const imgPath = 'images/1';
 const cardDeck= [];
-const cardTypes = ['spade', 'heart', 'diamond', 'club'];
+const cardTypes= ['spade', 'heart', 'diamond', 'club'];
 cardTypes.forEach((type) => {
   let color= 'black';
   for (let i = 1; i <= 13; i++) {
@@ -26,12 +26,12 @@ const initialState = {
   targetDecks: [
     {
       targetDeck:[
-        //{
-          //cardValue: '4',
-          //cardColor: 'black',
-          //cardFront: 'images/1/s4.gif',
-          //cardBack: 'images/1/b2fv.gif'
-        //}
+        {
+          cardValue: '4',
+          cardColor: 'black',
+          cardFront: 'images/1/s4.gif',
+          cardBack: 'images/1/b2fv.gif'
+        }
       ]
     },{
       targetDeck:[
@@ -65,13 +65,23 @@ const initialState = {
           cardColor: 'black',
           cardFront: 'images/1/s2.gif',
           cardBack: 'images/1/b2fv.gif'
-        },{
+        }
+      ]
+    },{
+      playingDeck:[]
+    },{
+      playingDeck:[]
+    },{
+      playingDeck:[{
           cardValue: '3',
           cardColor: 'black',
           cardFront: 'images/1/s3.gif',
           cardBack: 'images/1/b2fv.gif'
-        }
-      ]
+      }]
+    },{
+      playingDeck:[]
+    },{
+      playingDeck:[]
     }
   ]
 }
@@ -83,6 +93,9 @@ class CardGame extends React.Component {
   }
   flipCard(){
     var{mainDeck, dealDeck}= this.state;
+    if(mainDeck.length== 0 && dealDeck.length!= 0){
+      mainDeck= dealDeck.splice(0,dealDeck.length).reverse();
+    }
     const mainDeckTop= mainDeck[mainDeck.length-1]; 
     mainDeck.pop();
     dealDeck.push(mainDeckTop);
@@ -133,23 +146,23 @@ class CardGame extends React.Component {
           <h3 className = 'gameButton'> Game </h3>
         </div>
         <div className= 'field'>
-          <div className= 'mainDeck'>
+          <div className= 'decks' id= 'mainDeck'>
             <img className= 'card' 
               src= {mainDeckTop.cardBack}
               onClick= {this.flipCard.bind(this)}
               className= 'img' 
             />
           </div>
-          <div className= 'dealDeck'>
+          <div className= 'decks' id= 'dealDeck'>
             <img className= 'card'
             src= {dealDeckTop.cardFront} 
             className= 'img' 
             />
           </div>
-          <div className= 'targetDecks'>
+          <div className= 'decks' id= 'targetDecks'>
             {targetDecks.map(this.renderTargetDeck, this)}
           </div>
-          <div className= 'playingDecks'>
+          <div className= 'decks' id= 'playingDecks'>
             {playingDecks.map(this.renderPlayingDeck, this)}
           </div>
         </div>
@@ -171,7 +184,7 @@ class MainDeckCard extends React.Component{
     const {index, value, color, cardBack} = this.props ;
     return(
       <div>
-        <img className= 'mainDeckCard' src= {cardBack} alt= '' className= 'img' />
+        <img className= 'card' src= {cardBack} alt= '' className= 'img' />
       </div>
     );
   }
@@ -221,7 +234,7 @@ class PlayingDeckCard extends React.Component{
     const {index, value, color, cardFront, cardBack} = this.props ;
     return(
       <div>
-        <img className= 'playingDeckCard' src= {index== 0? cardFront: cardBack}  alt= '' className= 'img' />
+        <img className= 'card' src= {index== 0? cardFront: cardBack}  alt= '' className= 'img' />
       </div>
     );
   }

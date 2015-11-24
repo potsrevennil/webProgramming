@@ -6,7 +6,8 @@
 }
 
 .field{
-    position: relative;
+    position: absolute;
+    top: 50px;
 }
 
 /* gameButton */
@@ -14,61 +15,45 @@
 
 }
 /* common*/
+.decks{
+  position: relative;
+  top: 0px;
+  height: 175px;
+  display: inline-block;
+  left: 2.5em;
+  margin-left: 2.5em;
+}
 .deck{
   display: inline-block;
-  height: 250px;
-  width:inherit;
-  margin: 2.5em;
+  margin-right: 2.5em;
+  height: inherit;
+  width: 120px;
 }
-
 img{
   height: 150px;
   width: 100px;
   alt: '';
   cursor: pointer;
 }
-/* mainDeck */
-.mainDeck{
-  position: absolute;
-  top: 0px;
-  height: 300px;
-  width: 200px;
-  left: 2.5em;
+/* row1*/
+#mainDeck{
+  width: 120px;
 }
 
-/* dealDeck */
-.dealDeck{
-  position: absolute;
-  top: 0px;
-  left: 250px;
-  height: 300px;
-  width: 200px;
+#dealDeck{
+  width: 120px;
 }
-/* targetDecks*/
-.targetDecks{
-  /*position: absolute;*/
-  /*top: 0px;*/
-  /*height: 300px;*/
-  /*width: 600px;*/
+#targetDecks{
+  left: 360px;
 }
 
 /* playingDecks */
-.playingDecks{
-    position: absolute;
-    top:300px;
-    height: 300px;
-    width: inherit;
+#playingDecks{
+  width: inherit;
+  top:50px;
 }
 
-.playingDeck{
-    height: 250px;
-    width: 200px;
-}
 
-.playingDeckCard{
-    height: inherit;
-    width: inherit;
-}
 
 *{
     -webkit-box-sizing: border-box;
