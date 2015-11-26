@@ -1,67 +1,13 @@
 const React = require('react') ;
+const PlayingDeck = require('./PlayingDeck') ;
+const MainDeckCard = require('./MainDeckCard') ;
+const DealDeckCard = require('./DealDeckCard') ;
+const TargetDeck = require('./TargetDeck') ;
+const initialState = require('./initialState') ;
+const DragDropContext = require('react-dnd').DragDropContext;
+const HTML5Backend = require('react-dnd-html5-backend');
 // const Rebase = require('re-base');
 // const base = Rebase.createClass('https://chatappoflin.firebaseio.com');
-//const imgPath = 'images/1';
-const cardDeck= [];
-const cardTypes= ['spade', 'heart', 'diamond', 'club'];
-cardTypes.forEach((type) => {
-  for (let i = 1; i <= 13; i++) {
-    cardDeck.push({
-      cardValue: `${i}`,
-      cardType: type,
-    });
-  }
-});
-
-
-const initialState = {
-  imagePath:'images/1/',
-  mainDeck: cardDeck,
-  dealDeck: [],
-  targetDecks: [
-    {
-      targetDeck:[]
-    },{
-      targetDeck:[
-        {
-          cardValue: '5',
-          cardType: 'spade',
-        }
-      ]
-    },{
-      targetDeck:[]
-    },{
-      targetDeck:[]
-    }
-  ],
-  playingDecks: [
-    {
-      playingDeck:[]
-    },{
-      playingDeck:[
-        {
-          cardValue: '2',
-          cardType: 'spade',
-        },
-        {
-          cardValue: '3',
-          cardType: 'spade',
-        }
-      ]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    }
-  ]
-}
-
 class CardGame extends React.Component {
   constructor(props) {
     super(props) ;
@@ -120,8 +66,6 @@ class CardGame extends React.Component {
 
   render(){
     const { imagePath, mainDeck, dealDeck, targetDecks, playingDecks } = this.state ; 
-    const mainDeckTop= mainDeck[mainDeck.length- 1] || {};
-    const mDTCardBack= imagePath+ 'b2fv.gif';
     const dealDeckTop= dealDeck[dealDeck.length- 1] || {};
     const dDTCardFront= dealDeck.length? imagePath+`${dealDeckTop.cardType[0]}${dealDeckTop.cardValue}.gif` : null;
     return(
@@ -134,10 +78,7 @@ class CardGame extends React.Component {
             {mainDeck.map(this.renderMainDeckCard, this)}
           </div>
           <div className= 'decks' id= 'dealDeck'>
-            <img
-            src= {dDTCardFront} 
-            className= 'img' 
-            />
+            <DealDeckCard src= {dDTCardFront} />
           </div>
           <div className= 'decks' id= 'targetDecks'>
             {targetDecks.map(this.renderTargetDeck, this)}
@@ -151,75 +92,4 @@ class CardGame extends React.Component {
   }
 }
 
-class MainDeckCard extends React.Component{
-  render(){
-    const {index, value, type, onClick, src} = this.props ;
-    return(
-      <div className= 'card' style= {{bottom: index* -0.2, left: index* 0.3}}>
-        <img 
-          src= {src+ 'b2fv.gif'}
-          onClick= {onClick}
-          className= 'img' />
-      </div>
-    );
-  }
-}
-
-class TargetDeck extends React.Component{
-  render(){
-    const{index, src, targetDeck}= this.props;
-    const targetDeckTop= targetDeck[targetDeck.length- 1]|| {}; 
-    const tDTCardFront= targetDeck.length? src+`${targetDeckTop.cardType[0]}${targetDeckTop.cardValue}.gif` : null;
-    return(
-      <div className= 'deck'>
-        <img
-        src= {tDTCardFront} 
-        className= 'img' 
-        />
-      </div>
-    );
-  }
-}
-
-class PlayingDeck extends React.Component{
-  renderPlayingDeckCard(card, i){
-    const{ cardValue, cardType}= card ;
-    const{src, playingDeck}= this.props;
-    return(
-      <PlayingDeckCard
-        deckSize= {playingDeck.length}
-        index= {i}
-        value= {cardValue}
-        type= {cardType}
-        src= {src}
-      />
-    );
-  }
-
-  render(){
-    const {playingDeck} = this.props ;
-    return(
-      <div className= 'deck'>
-        {playingDeck.map(this.renderPlayingDeckCard,this)}
-      </div>
-    );
-  }
-}
-
-class PlayingDeckCard extends React.Component{
-  render(){
-    const{ deckSize, index, value, type, src} = this.props ;
-    const cardFront= src== null? src: src+ `${type[0]}${value}.gif`;
-    const cardBack= src== null? src: src+ 'b2fv.gif';
-    return(
-      <div className= 'card' style= {{top: index* 5}}>
-        <img  
-          src= { deckSize- 1== index? cardFront: cardBack}  
-          className= 'img'
-        />
-      </div>
-    );
-  }
-}
-
-module.exports= CardGame ;
+module.exports= DragDropContext(HTML5Backend)(CardGame) ;
