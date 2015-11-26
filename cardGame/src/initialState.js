@@ -13,27 +13,20 @@ const initialState = {
   imagePath:'images/1/',
   mainDeck: cardDeck,
   dealDeck: [],
-  targetDecks: [
-    {
-      targetDeck:[]
-    },{
-      targetDeck:[
-        {
-          cardValue: '5',
-          cardType: 'spade',
-        }
-      ]
-    },{
-      targetDeck:[]
-    },{
-      targetDeck:[]
-    }
+  targetDecks:[ 
+          [
+            {
+              cardValue: '5',
+              cardType: 'spade'
+            }
+          ],[
+          ],[
+          ],[
+          ]
   ],
   playingDecks: [
-    {
-      playingDeck:[]
-    },{
-      playingDeck:[
+    [],
+    [
         {
           cardValue: '2',
           cardType: 'spade',
@@ -42,18 +35,12 @@ const initialState = {
           cardValue: '3',
           cardType: 'spade',
         }
-      ]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    },{
-      playingDeck:[]
-    }
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
   ]
 }
 

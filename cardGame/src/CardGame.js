@@ -42,7 +42,8 @@ class CardGame extends React.Component {
   }
   
   renderTargetDeck(deck, i){
-    const{ targetDeck}= deck;
+    var targetDeck= [];
+      targetDeck= deck;
     const{imagePath}= this.state;
     return (
         <TargetDeck
@@ -53,7 +54,8 @@ class CardGame extends React.Component {
     );
   }
   renderPlayingDeck(deck, i){
-    const{ playingDeck}= deck;
+    var playingDeck= [];
+    playingDeck= deck;
     const{imagePath}= this.state;
     return (
       <PlayingDeck

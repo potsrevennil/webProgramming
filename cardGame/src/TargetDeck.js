@@ -16,7 +16,7 @@ const React = require('react') ;
 
 class TargetDeck extends React.Component{
   render(){
-    const{index, src, targetDeck}= this.props;
+    const{src, targetDeck}= this.props;
     const targetDeckTop= targetDeck[targetDeck.length- 1]|| {}; 
     const tDTCardFront= targetDeck.length? src+`${targetDeckTop.cardType[0]}${targetDeckTop.cardValue}.gif` : null;
     return(
