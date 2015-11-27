@@ -48,7 +48,7 @@ class CardGame extends React.Component {
     return (
         <TargetDeck
           index= {i}
-          src= {imagePath}
+          src= {targetDeck.length==0 ? null: imagePath}
           targetDeck= {targetDeck}
         />
     );
@@ -68,8 +68,6 @@ class CardGame extends React.Component {
 
   render(){
     const { imagePath, mainDeck, dealDeck, targetDecks, playingDecks } = this.state ; 
-    const dealDeckTop= dealDeck[dealDeck.length- 1] || {};
-    const dDTCardFront= dealDeck.length? imagePath+`${dealDeckTop.cardType[0]}${dealDeckTop.cardValue}.gif` : null;
     return(
       <div className= 'cardGame'>
         <div className= 'toolBar'>
@@ -80,7 +78,7 @@ class CardGame extends React.Component {
             {mainDeck.map(this.renderMainDeckCard, this)}
           </div>
           <div className= 'decks' id= 'dealDeck'>
-            <DealDeckCard src= {dDTCardFront} />
+            <DealDeckCard src= {imagePath} deck= {dealDeck} />
           </div>
           <div className= 'decks' id= 'targetDecks'>
             {targetDecks.map(this.renderTargetDeck, this)}

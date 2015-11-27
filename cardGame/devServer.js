@@ -13,7 +13,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use('/static', express.static('public'));
+app.use('/webProgramming/cardGame/images', express.static('images'));
 
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));

@@ -1,4 +1,5 @@
 const React = require('react') ;
+const Card = require('./Card') ;
 //const DropTarget = require('reat-dnd').DropTarget
 
 //const target ={
@@ -18,12 +19,14 @@ class TargetDeck extends React.Component{
   render(){
     const{src, targetDeck}= this.props;
     const targetDeckTop= targetDeck[targetDeck.length- 1]|| {}; 
-    const tDTCardFront= targetDeck.length? src+`${targetDeckTop.cardType[0]}${targetDeckTop.cardValue}.gif` : null;
+    const tDTid= targetDeck.length? `${targetDeckTop.cardType[0]}${targetDeckTop.cardValue}`: ''
+    const tDTCardFront= targetDeck.length? src+ tDTid+ '.gif' : null;
+
     return(
       <div className= 'deck'>
-        <img
-        src= {tDTCardFront} 
-        className= 'img' 
+        <Card
+          src= {tDTCardFront} 
+          ID=  {tDTid}
         />
       </div>
     );
