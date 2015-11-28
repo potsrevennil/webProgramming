@@ -4,7 +4,7 @@ cardTypes.forEach((type) => {
   for (let i = 1; i <= 13; i++) {
     cardDeck.push({
       cardValue: `${i}`,
-      cardType: type,
+      cardType: type[0],
     });
   }
 });
@@ -17,7 +17,7 @@ const initialState = {
           [
             {
               cardValue: '5',
-              cardType: 'spade'
+              cardType: 's'
             }
           ],[
           ],[
@@ -29,11 +29,11 @@ const initialState = {
     [
         {
           cardValue: '2',
-          cardType: 'spade',
+          cardType: 's',
         },
         {
           cardValue: '3',
-          cardType: 'spade',
+          cardType: 's',
         }
     ],
     [],

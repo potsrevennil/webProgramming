@@ -48,7 +48,7 @@ class CardGame extends React.Component {
     return (
         <TargetDeck
           index= {i}
-          src= {targetDeck.length==0 ? null: imagePath}
+          src= {imagePath}
           targetDeck= {targetDeck}
         />
     );
@@ -60,7 +60,7 @@ class CardGame extends React.Component {
     return (
       <PlayingDeck
         index= {i}
-        src= {playingDeck.length==0 ? null: imagePath}
+        src= {imagePath}
         playingDeck= {playingDeck}
       />
     );

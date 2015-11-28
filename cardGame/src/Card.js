@@ -6,26 +6,28 @@ const Types= {
 };
 
 const cardSource= {
-  canDrag(props){
-    return props.isReady;
-  },
-  isDragging(props, monitor){
-    console.log('isDragging') ;
-    return monitor.getItem().id === props.id;
-  },
+  //canDrag(props){
+    //return props.isReady;
+  //},
+  //isDragging(props, monitor){
+    //console.log('isDragging') ;
+    //return monitor.getItem().id === props.id;
+  //},
   beginDrag(props){
-    var item= {id: props.id};
+    console.log('beginDrag') ;
+    var item= {id: props.ID};
+    console.log(props.ID);
     return item;
-  },
-  endDrag(props, monitor, component){
-    if(!monitor.didDrop()){
-      console.log('Did not drop');
-      return;
-    }
-    var item= monitor.getItem();
-    var dropResult = monitor.getDropResult();
-    CardActions.moveCArdToList(item.id, dropResult.listid);
   }
+  //endDrag(props, monitor, component){
+    //if(!monitor.didDrop()){
+      //console.log('Did not drop');
+      //return;
+    //}
+    //var item= monitor.getItem();
+    //var dropResult = monitor.getDropResult();
+    //CardActions.moveCArdToList(item.id, dropResult.listid);
+  //}
 };
 
 function collect(connect, monitor){

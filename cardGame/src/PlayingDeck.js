@@ -5,9 +5,9 @@ class PlayingDeck extends React.Component{
   renderPlayingDeckCard(card, i){
     const{ cardValue, cardType}= card ;
     const{src, playingDeck}= this.props;
-    const id= src== null? '': `${cardType[0]}${cardValue}`;
-    const cardFront= src== null? src: src+ `${cardType[0]}${cardValue}.gif`;
-    const cardBack= src== null? src: src+ 'b2fv.gif';
+    const id= playingDeck.length== 0? '': `${cardType}${cardValue}`;
+    const cardFront= src+ id+ '.gif';
+    const cardBack= src+ 'b2fv.gif';
     const deckSize= playingDeck.length; 
     return(
       <div className= 'card' style= {{top: i* 5}}>
@@ -26,27 +26,4 @@ class PlayingDeck extends React.Component{
   }
 }
 
-class PlayingDeckCard extends React.Component{
-  render(){
-    const{ deckSize, index, value, type, src} = this.props ;
-    const cardFront= src== null? src: src+ `${type[0]}${value}.gif`;
-    const cardBack= src== null? src: src+ 'b2fv.gif';
-    return(
-      <div className= 'card' style= {{top: index* 5}}>
-        <img  
-          src= { deckSize- 1== index? cardFront: cardBack}  
-          className= 'img'
-        />
-      </div>
-    );
-  }
-}
-
 module.exports = PlayingDeck ;
-      //<PlayingDeckCard
-        //deckSize= {playingDeck.length}
-        //index= {i}
-        //value= {cardValue}
-        //type= {cardType}
-        //src= {src}
-      ///>

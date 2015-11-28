@@ -8,7 +8,7 @@ class MainDeckCard extends React.Component{
       <div className= 'card' style= {{bottom: index* -0.2, left: index* 0.3}} onClick= {onClick}>
         <Card 
           src= {src+ 'b2fv.gif'}
-          ID= {`${type[0]}${value}`}
+          ID= {`${type}${value}`}
         />
       </div>
     );
