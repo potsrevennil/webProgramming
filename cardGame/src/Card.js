@@ -15,19 +15,23 @@ const cardSource= {
   //},
   beginDrag(props){
     console.log('beginDrag') ;
-    var item= {id: props.ID};
-    console.log(props.ID);
-    return item;
+    const card= {
+      value: props.deck[props.index].cardValue,
+      type: props.deck[props.index].cardType
+    };
+    console.log(props.deck[props.index].cardValue);
+    return card;
+  },
+  endDrag(props, monitor, component){
+    const card= monitor.getItem();
+    if(monitor.didDrop()){
+      //console.log('did drop');
+      //props.deck.pop();     
+      //console.log(props.deck[0]);
+      //console.log(props.deck[1]);
+      return;
+    }
   }
-  //endDrag(props, monitor, component){
-    //if(!monitor.didDrop()){
-      //console.log('Did not drop');
-      //return;
-    //}
-    //var item= monitor.getItem();
-    //var dropResult = monitor.getDropResult();
-    //CardActions.moveCArdToList(item.id, dropResult.listid);
-  //}
 };
 
 function collect(connect, monitor){
@@ -39,8 +43,21 @@ function collect(connect, monitor){
 
 class Card extends React.Component{
   render(){
-    const{ src, ID} = this.props;
-    const{isDragging, connectDragSource} = this.props;
+    const{ imgDir, index, deck, display, isDragging, connectDragSource} = this.props;
+    var src= null;
+    if(deck.length != 0){
+      const cardFront= imgDir+ deck[index].cardType+ deck[index].cardValue+ '.gif';
+      const cardBack= imgDir+ 'b2fv.gif';
+      if(display== 'back'){
+        src= cardBack;
+      }
+      else if(display== 'front'){
+        src= cardFront;
+      }
+      else{
+        src= index != deck.length- 1 ? cardBack: cardFront;
+      }
+    }
     return connectDragSource(
       <img 
         src= {src}

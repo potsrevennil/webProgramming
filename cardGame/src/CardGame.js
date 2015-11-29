@@ -1,7 +1,7 @@
 const React = require('react') ;
 const PlayingDeck = require('./PlayingDeck') ;
-const MainDeckCard = require('./MainDeckCard') ;
-const DealDeckCard = require('./DealDeckCard') ;
+const MainDeck = require('./MainDeck') ;
+const DealDeck = require('./DealDeck') ;
 const TargetDeck = require('./TargetDeck') ;
 const initialState = require('./initialState') ;
 const DragDropContext = require('react-dnd').DragDropContext;
@@ -27,16 +27,14 @@ class CardGame extends React.Component {
         dealDeck: dealDeck
     });
   }
-  renderMainDeckCard(card, i){
-    const{ cardValue, cardType}= card;
-    const{ imagePath}= this.state;
+  renderMainDeck(card, i){
+    const{ imgDir, mainDeck}= this.state;
     return(
-      <MainDeckCard
+      <MainDeck
         index= {i}
-        value= {cardValue}
-        type= {cardType}
+        deck= {mainDeck}
         onClick= {this.flipCard.bind(this)}
-        src= {imagePath}
+        imgDir= {imgDir}
       />
     );
   }
@@ -44,11 +42,11 @@ class CardGame extends React.Component {
   renderTargetDeck(deck, i){
     var targetDeck= [];
       targetDeck= deck;
-    const{imagePath}= this.state;
+    const{imgDir}= this.state;
     return (
         <TargetDeck
           index= {i}
-          src= {imagePath}
+          imgDir= {imgDir}
           targetDeck= {targetDeck}
         />
     );
@@ -56,18 +54,18 @@ class CardGame extends React.Component {
   renderPlayingDeck(deck, i){
     var playingDeck= [];
     playingDeck= deck;
-    const{imagePath}= this.state;
+    const{imgDir}= this.state;
     return (
       <PlayingDeck
         index= {i}
-        src= {imagePath}
+        imgDir= {imgDir}
         playingDeck= {playingDeck}
       />
     );
   }
 
   render(){
-    const { imagePath, mainDeck, dealDeck, targetDecks, playingDecks } = this.state ; 
+    const { imgDir, mainDeck, dealDeck, targetDecks, playingDecks } = this.state ; 
     return(
       <div className= 'cardGame'>
         <div className= 'toolBar'>
@@ -75,10 +73,10 @@ class CardGame extends React.Component {
         </div>
         <div className= 'field'>
           <div className= 'decks' id= 'mainDeck'>
-            {mainDeck.map(this.renderMainDeckCard, this)}
+            {mainDeck.map(this.renderMainDeck, this)}
           </div>
           <div className= 'decks' id= 'dealDeck'>
-            <DealDeckCard src= {imagePath} deck= {dealDeck} />
+            <DealDeck imgDir= {imgDir} deck= {dealDeck} />
           </div>
           <div className= 'decks' id= 'targetDecks'>
             {targetDecks.map(this.renderTargetDeck, this)}

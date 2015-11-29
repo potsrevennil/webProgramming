@@ -10,8 +10,8 @@ const cardTarget= {
   drop(props, monitor, component){
     const card= monitor.getItem()
     props.targetDeck.push({
-      cardValue: card.id.substring(1,card.id.length), 
-      cardType: card.id[0]
+      cardValue: card.value, 
+      cardType: card.type
     });
     return;
   }
@@ -26,16 +26,15 @@ function collect(connect, monitor){
 
 class TargetDeck extends React.Component{
   render(){
-    const{src, targetDeck, isOver, connectDropTarget}= this.props;
-    const targetDeckTop= targetDeck[targetDeck.length- 1]|| {}; 
-    const tDTid= targetDeck.length? `${targetDeckTop.cardType}${targetDeckTop.cardValue}`: ''
-    const tDTCardFront= targetDeck.length? src+ tDTid+ '.gif' : null;
+    const{imgDir, targetDeck, isOver, connectDropTarget}= this.props;
 
     return connectDropTarget(
       <div className= 'deck'>
         <Card
-          src= {tDTCardFront} 
-          ID=  {tDTid}
+          imgDir= {imgDir} 
+          index= {targetDeck.length- 1}
+          deck=  {targetDeck}
+          display= {'front'}
         />
       </div>
     );

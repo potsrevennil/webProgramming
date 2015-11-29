@@ -10,7 +10,7 @@ cardTypes.forEach((type) => {
 });
 
 const initialState = {
-  imagePath:'webProgramming/cardGame/images/1/',
+  imgDir:'webProgramming/cardGame/images/1/',
   mainDeck: cardDeck,
   dealDeck: [],
   targetDecks:[ 
